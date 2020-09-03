@@ -1,2 +1,4 @@
-# Learning-JAVASCRIPT
-러닝 자바스크립트 : ES6로 제대로 입문하는 모던 자바스크립트 웹 개발
+# Learning JAVASCRIPT
+## 들어가는 말
+
+본 Repository는 출판사 한빛 미디어의 Learning JavaScript의 책을 공부한 내용을 담고 있습니다.
