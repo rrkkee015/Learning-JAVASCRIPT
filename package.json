@@ -1,0 +1,25 @@
+{
+  "name": "learning-javascript",
+  "version": "1.0.0",
+  "description": "본 Repository는 출판사 한빛 미디어의 Learning JavaScript의 책을 공부한 내용을 담고 있습니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rrkkee015/Learning-JAVASCRIPT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rrkkee015/Learning-JAVASCRIPT/issues"
+  },
+  "homepage": "https://github.com/rrkkee015/Learning-JAVASCRIPT#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0-beta.2"
+  }
+}
