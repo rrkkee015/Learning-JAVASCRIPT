@@ -156,6 +156,7 @@ console.log(x); // Reference Error
 ## 함수, 클로저, 정적 스코프
 - 함수가 특정 스코프에 접근할 수 있도록 의도적으로 그 스코프에서 정의하는 경우가 많다.
 - 이런 것을 보통 클로저라고 부른다. 스코프를 함수 주변으로 좁히는 것이라고 생각해도 된다.
+- 쉽게 말하면 외부 함수의 실행이 끝나서 외부함수가 소멸된 이후에도 내부함수가 외부함수의 변수에 접근 할 수 있는 메커니즘이 클로저이다.
 ```javascript
 let globalFunc; // 정의되지 않은 전역 함수
 {
@@ -180,6 +181,17 @@ let oRef = f();
 oRef.note = "Not so sfae after all!";
 ```
 - 일반적으로 자신의 스코프에 없는 것들에는 접근할 수 없지만, 함수를 정의해 클로저를 만들면 접근할 수 없었던 것들에 접근할 방법이 생긴다.
+```javascript
+function outter() {
+  var title = 'coding everybody';
+
+  return function () {
+    alert(title);
+  }
+}
+inner = outter(); // 여기서 외부 함수를 호출하고 리턴 값을 받고 외부 함수의 변수가 소멸 될 것이라고 예상이 된다.
+inner(); // 하지만 그렇지 않다.
+```
 ## 즉시 호출하는 함수 표현식
 ```javascript
 (function() {
