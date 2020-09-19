@@ -46,4 +46,43 @@ function f() {
 - 즉, 함수는 정의 될 때 접근할 수 있었던 식별자에는 여전히 접근할 수 있지만, 호출할 때 스코프에 있는 식별자에 접근할 수 없다.
 - 자바스크립트의 정적 스코프는 전역 스코프와 블록 스코프, 함수 스코프에 적용된다.
 ## 전역 스코프
-- 스코프는 계층적이며 트리의 맨 아래에는 바탕이 되는 무언가가 있어야 한다. 즉, 프로그램을 시작할 때 암시적으로 주어지는 스코프가 필요하다. 이 스코프를 전역 스코프라고 한다.
+- 스코프는 계층적이며 트리의 맨 아래에는 바탕이 되는 무언가가 있어야 한다. 즉, 프로그램을 시작할 때 암시적으로 주어지는 스코프가 필요하다. 이 스코프를 *전역 스코프*라고 한다.
+- 자바스크립트 프로그램을 시작할 때, 어떤 함수도 호출하지 않았을 때, 실행 흐름은 전역 스코프에 있다.
+- 전역 스코프에 선언한 것은 무엇이든 프로그램의 모든 스코프에서 볼 수 있다. (*전역 변수*와 비슷)
+```javascript
+let name = "Irena"; // 전역
+let age = 25; // 전역
+
+function greet() {
+  console.log(`Hello, ${name}!`);
+}
+function getBirthYear() {
+  return new Date().getFullYear() - age;
+}
+```
+- 위 함수의 문제는 스코프에 대단히 의존 적이라는 것이다. 어떤 함수든, 프로그램 어디서든 상관없이 name 값을 (실수로, 의도적으로) 바꿀 수 있따.
+- 또한, name과 age는 흔한 변수명이라서 다른 곳에서 사용될 가능성이 크다.
+- 그래서 객체에 보관하는게 좋다.
+```javascript
+let user = {
+  name = "Irena",
+  age = 25,
+}
+function greet() {
+  console.log(`Hello, ${user.name}!`);
+}
+function getBirthYear() {
+  return new Date().getFullYear() - user.age;
+}
+```
+- 만약 사용자가 더 많아지면 어떻게 될까? 전역 스코프에 의존되지 않도록 해보자
+```javascript
+function greet(user) {
+  console.log(`Hello, ${user.name}!`);
+}
+function getBirthYear(user) {
+  return new Date().getFullYear() - user.age;
+}
+```
+- 위 함수는 모든 스코프에서 호출할 수 있고, 명시적으로 user를 전달받는다.
+- 프로그램이 복잡해질 수록 전역 스코프에 의존하지 않도록 하자.
