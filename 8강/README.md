@@ -158,3 +158,6 @@ arr.join(' -- '); // "1 -- -- hello -- -- true -- --"
 const attributes = ["Nimble", "Perceptive", "Generous"];
 const html = '<ul><li>' + attributes.join('</li><li>') + '</li></ul>';
 ```
+
+# 요약
+- 책 222p를 참고하세요.
