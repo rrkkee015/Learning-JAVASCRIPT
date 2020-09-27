@@ -181,3 +181,29 @@ m instanceof Car; // false
 m instanceof Motorcycle; // true
 m instanceof Vehicle; // true
 ```
+
+## 다중 상속, 믹스인, 인터페이스
+- 일부 객체지향 언어에서 *다중 상속*을 지원한다. 클래스가 슈퍼 클래스를 두 개를 가지는 기능이며, 슈퍼클래스의 슈퍼클래스가 존재하는 일반적인 상속과는 다르다. 충돌 위험이 있다.
+- 다중 상속이 필요한 문제에 대한 해답으로 내놓은 개념이 *믹스인*이다. 믹스인이란 기능을 필요한 만큼 섞어 놓은 것이다.
+- 자동차에 적용할 수 있는 보험 가입 믹스인을 만들도록하자.
+```javascript
+class InsuramcePolicy {}
+function makeInsurable(o) {
+  o.addInsurancePolicy = function(p) { this.insurancePolicy = p; }
+  o.getInsurancePolicy = function() { return this.insurancePolicy; }
+  o.isInsured = function() { return !!this.insurancePolicy; }
+}
+
+const car1 = new Car(); // 자동차를 추상화한 개념을 보험에 가입시킬 수 없고, 개별 자동차를 보험에 가입시켜야한다.
+makeInsurable(car1);
+car1.addInsurancePolicy(new InsurancePolicy());
+// 이렇게하면 모든 자동차에 적용해야하니 귀찮다.
+
+makeInsurable(Car.prototype);
+const car1 = new Car();
+car1.addInsurancePolicy(new InsurancePolicy());
+// 보험 관련 메서드들은 모두 Car 클래스에 정의된 것처럼 동작한다.
+```
+- 위처럼 개발을 한다면 자동차 회사에서 Car 클래스의 개발과 관리를 담당하고, 보험 회사에서 InsurancePolicy 클래스와 makeInsurable 믹스인을 관리하게 된다.
+## 요약
+- 객체지향 프로그래밍을 사용하다 보면 자연스레 관리하고, 디버그하고, 수정하고 쉬운 정리되고 캡슐화된 코드를 작성하게 된다. 물론 자바스크립트는 데이터 접근 제어가 불가능하다는 점에서 객체지향 언어의 기준에 미치지 못한다고 욕 먹긴한다.
